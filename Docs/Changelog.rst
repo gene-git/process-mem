@@ -1,6 +1,14 @@
 Changelog
 =========
 
+**[1.0.0] ----- 2024-09-27** ::
+
+	    Allow process name match to be case insensitve
+	    Allow process name match to be a regex
+	    Update man page and readme
+	    update Changelog and man page
+
+
 **[0.9.2] ----- 2024-09-27** ::
 
 	    Improve README example output
