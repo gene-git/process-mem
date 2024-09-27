@@ -12,17 +12,17 @@ process_mem : Command line tool to display process(es) memory usage
 I sometimes find the need to get the memory being consumed by a specific application.
 This simplifies that by summing up the memory used by all process with the same name.
 
-Sample
+Example
 
 ::
 
-    $ process-mem ssh
-            Proc-Name : [num]      rss      vsz      shr
-                  ssh : [ 18]   183.0M   276.4M   160.8M
-                Total : [ 18]    10.4M    15.4M     9.2M
+    $ process-mem ssh bash
+                   Proc-Name : [num]      rss      vsz      shr
+                        bash : [ 28]   204.5M   258.5M   152.8M
+                         ssh : [ 18]   183.0M   276.4M   160.8M
+                       Total : [ 46]   387.5M   534.9M   313.6M
 
-
-Which shows there are 18 ssh processes running.
+Which shows there are 28 bash process running and 18 ssh. Total resident memory is 388 MB.
 
 Key features
 ============
