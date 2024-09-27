@@ -24,21 +24,29 @@ Example
 
 Which shows there are 28 bash process running and 18 ssh. Total resident memory is 388 MB.
 
+Next example uses regex with case ignored. ::
+
+    $ ./process-mem  -i 'webkit.*'
+                   Proc-Name : [num]      rss      vsz      shr
+        WebKitNetworkProcess : [  2]   304.5M   133.4G   239.2M
+            WebKitWebProcess : [ 45]     9.1G     2.9T     7.9G
+                       Total : [ 47]     9.4G     3.1T     8.2G
+
 Key features
 ============
 
- * Works for any user
- * Displays total memory used
+ * Simple way to get total memory used by an application across all it's processes.
+ * Can use regex to match process name
+ * Can choose user to match.
 
 New / Interesting
 =================
 
- - initial release
+ - Add regex matching for process names.
 
 ###############
 Getting Started
 ###############
-
 
 process_mem application
 =======================
@@ -69,6 +77,10 @@ positional arguments: list of process names to check. If omitted, all processes 
    
     Limit to processes ownder by specified user or *:all:* 
     Defaults to current user.
+
+ - *-i, --ignore-case*
+
+    Case insensitive matching of process names
 
  - *-f, --full*
 

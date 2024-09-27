@@ -2,9 +2,11 @@
 """
 Display memory usage for process(es)
 """
+# pylint: disable=invalid-name
 import getpass
 import argparse
 import textwrap
+import re
 from typing import Optional
 from pydantic import BaseModel
 import psutil
@@ -17,6 +19,7 @@ def help_epilog():
               User can be any user or :all: for all users. Current user by default.
               Process Names limit the output to those processes.
                 If none provided, then all processes are included that match user.
+              Process names may may use regex expressions.
 
             Output
               1 row per process with each row :
@@ -29,6 +32,13 @@ def help_epilog():
                     dirty is the number of dirty pages (full report)
              ''')
     return epilog
+
+def likely_regex(name):
+    """
+    Do our best to guess if the process name is a regex
+    """
+    regex_chars = r'.^$*+?{}[]|()\\'
+    return any(char in name for char in regex_chars)
 
 class MemInfo(BaseModel):
     """ process memory data """
@@ -114,6 +124,9 @@ class ProcInfo:
     """
     def __init__(self):
         self.pnames = []
+        self.is_regex = {}
+        self.regex_comp = {}
+        self.ignore_case = False
         self.current_user = getpass.getuser()
         self.user = self.current_user
         self.full = False
@@ -128,6 +141,9 @@ class ProcInfo:
         ahelp = f'Full report adds shared lib and dirty pages ({self.full})'
         par.add_argument('-f', '--full', help=ahelp, action='store_true', default=self.full)
 
+        ahelp = f'Case insensitive process names match({self.ignore_case})'
+        par.add_argument('-i', '--ignore-case', help=ahelp, action='store_true', default=self.ignore_case)
+
         ahelp = 'process names to check (all processes if not provided)'
         par.add_argument('pnames', nargs='*', help=ahelp)
 
@@ -135,6 +151,20 @@ class ProcInfo:
         if parsed:
             for (opt, val) in vars(parsed).items():
                 setattr(self, opt, val)
+
+        # check process names for regex
+        for name in self.pnames:
+            self.is_regex[name] = likely_regex(name)
+
+            if self.is_regex[name] :
+                regex = name
+            else:
+                regex = fr'^{name}$'
+
+            if self.ignore_case:
+                self.regex_comp[name] = re.compile(regex, re.IGNORECASE)
+            else:
+                self.regex_comp[name] = re.compile(regex)
 
         if self.user != self.current_user:
             print(f'Checking process mem for: {self.user}')
@@ -211,13 +241,21 @@ class ProcInfo:
         """
         return true if this proc is to be kept
         """
+        # user
         proc_user = proc.info.get('username')
         if self.user not in (':all:', proc_user):
             return False
 
-        proc_name = proc.info.get('name')
-        if not self.pnames or proc_name in self.pnames:
+        if not self.pnames :
             return True
+
+        # process name
+        proc_name = proc.info.get('name')
+        for (_name, regcomp) in self.regex_comp.items():
+            if regcomp.match(proc_name) :
+                return True
+
+        #if proc_name in self.pnames:
         return False
 
 def main() :
