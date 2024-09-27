@@ -1,0 +1,17 @@
+# 
+# requirements.txt
+#
+
+# Run time
+python >= 3.10
+
+# package building/installing
+git
+wheel
+build
+installer
+hatch
+rsync
+
+
+

@@ -1,0 +1,42 @@
+#!/bin/bash
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: © 2024-present  Gene C <arch@sapience.com>
+#
+# installer script for process_mem
+# e.g. Call from PKGBUILD:  
+#   ./do-install ${pkgdir}
+# gene c
+#
+dest="$1"
+self='process-mem'
+
+license="Docs/License.rst"
+licensedir="/usr/share/licenses/${self}"
+
+# list apps without the ".py" or leave empty string
+apps=('process-mem')
+
+# so can make app link in /usr/bin
+sitedir=$(/usr/bin/python3 -c "import site; print(site.getsitepackages()[0])")
+self_sitedir=${sitedir}/${self//-/_}
+
+if [ ! -d "$dest" ] ; then
+    echo 'Missing destination directory'
+    exit 1
+else
+    # shared
+    /usr/bin/rsync --mkpath -a ${license} ${dest}/${licensedir}/
+    /usr/bin/python -m installer --destdir="$dest" dist/*.whl
+    install -Dm755 Docs/process_mem.1.gz -t "${dest}/usr/share/man/man1/"
+
+    # link(s) in /usr/bin/
+    if [ -v apps ] ; then
+        /usr/bin/mkdir -p "${dest}/usr/bin"
+        for app in ${apps[@]}
+        do
+            /usr/bin/ln -sf ${self_sitedir}/${app} ${dest}/usr/bin/${app}
+        done
+    fi
+    exit 0
+fi
+
