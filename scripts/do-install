@@ -27,7 +27,7 @@ else
     # shared
     /usr/bin/rsync --mkpath -a ${license} ${dest}/${licensedir}/
     /usr/bin/python -m installer --destdir="$dest" dist/*.whl
-    install -Dm755 Docs/process_mem.1.gz -t "${dest}/usr/share/man/man1/"
+    install -Dm755 Docs/process-mem.1.gz -t "${dest}/usr/share/man/man1/"
 
     # link(s) in /usr/bin/
     if [ -v apps ] ; then
