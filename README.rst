@@ -1,13 +1,28 @@
 .. SPDX-License-Identifier: MIT
 
-##################
+###########
 process-mem
-##################
+###########
 
 Overview
 ========
 
 process_mem : Command line tool to display process(es) memory usage
+
+I sometimes find the need to get the memory being consumed by a specific application.
+This simplifies that by summing up the memory used by all process with the same name.
+
+Sample
+
+::
+
+    $ process-mem ssh
+            Proc-Name : [num]      rss      vsz      shr
+                  ssh : [ 18]   183.0M   276.4M   160.8M
+                Total : [ 18]    10.4M    15.4M     9.2M
+
+
+Which shows there are 18 ssh processes running.
 
 Key features
 ============
@@ -16,7 +31,7 @@ Key features
  * Displays total memory used
 
 New / Interesting
-==================
+=================
 
  - initial release
 
@@ -26,7 +41,7 @@ Getting Started
 
 
 process_mem application
-============================
+=======================
 
 Usage
 -----

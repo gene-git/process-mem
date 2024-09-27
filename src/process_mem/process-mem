@@ -147,6 +147,11 @@ class ProcInfo:
         if not summary or len(summary) < 1:
             return
 
+        show_total = False
+        if len(summary) > 2:
+            # length = num_proces names + total
+            show_total = True
+
         hdr = f'{"Proc-Name":>28s} : [num] {"rss":>8s} {"vsz":>8s} {"shr":>8s}'
         if self.full:
             hdr += f' {"slib":>8s} {"dirty":>8s}'
@@ -158,7 +163,9 @@ class ProcInfo:
             row = f'[{info['num']:>3s}] {info['rss']:>8s} {info['vms']:>8s} {info['shared']:>8s}'
             if self.full:
                 row += f' {info['slib']:>8s} {info['dirty']:>8}'
-            print(f'{name:>28s} : {row}')
+
+            if mem.name != 'Total' or show_total :
+                print(f'{name:>28s} : {row}')
 
     def proc_mem_info(self) -> [MemInfo] :
         """
@@ -195,7 +202,7 @@ class ProcInfo:
                 mem_info.add(1, pmem.rss, pmem.vms, pmem.shared, pmem.lib, pmem.dirty)
 
             summary.append(mem_info)
-            mem_tot.add(num, pmem.rss,pmem.vms, pmem.shared, pmem.lib, pmem.dirty)
+            mem_tot.add(num, mem_info.rss, mem_info.vms, mem_info.shared, mem_info.slib, mem_info.dirty)
         summary.append(mem_tot)
 
         return summary
