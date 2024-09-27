@@ -1,6 +1,12 @@
 Changelog
 =========
 
+**[1.0.1] ----- 2024-09-27** ::
+
+	    Add dependencies to PKGBUILD
+	    update Changelog and man page
+
+
 **[1.0.0] ----- 2024-09-27** ::
 
 	    Allow process name match to be case insensitve
