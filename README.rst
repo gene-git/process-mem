@@ -17,7 +17,7 @@ Example
 ::
 
     $ process-mem ssh bash
-                   Proc-Name : [num]      rss      vsz      shr
+                   Proc-Name : [num]      rss      vms      shr
                         bash : [ 28]   204.5M   258.5M   152.8M
                          ssh : [ 18]   183.0M   276.4M   160.8M
                        Total : [ 46]   387.5M   534.9M   313.6M
@@ -27,7 +27,7 @@ Which shows there are 28 bash process running and 18 ssh. Total resident memory 
 Next example uses regex with case ignored. ::
 
     $ ./process-mem  -i 'webkit.*'
-                   Proc-Name : [num]      rss      vsz      shr
+                   Proc-Name : [num]      rss      vms      shr
         WebKitNetworkProcess : [  2]   304.5M   133.4G   239.2M
             WebKitWebProcess : [ 45]     9.1G     2.9T     7.9G
                        Total : [ 47]     9.4G     3.1T     8.2G

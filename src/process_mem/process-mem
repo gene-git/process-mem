@@ -182,7 +182,7 @@ class ProcInfo:
             # length = num_proces names + total
             show_total = True
 
-        hdr = f'{"Proc-Name":>28s} : [num] {"rss":>8s} {"vsz":>8s} {"shr":>8s}'
+        hdr = f'{"Proc-Name":>28s} : [num] {"rss":>8s} {"vms":>8s} {"shr":>8s}'
         if self.full:
             hdr += f' {"slib":>8s} {"dirty":>8s}'
         print(hdr)
