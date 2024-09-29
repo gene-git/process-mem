@@ -1,6 +1,12 @@
 Changelog
 =========
 
+**[HEAD] ----- 2024-09-29** ::
+
+	    Reporting virtual memory - use "vms" in place of "vsz"
+	    update Changelog and man page
+
+
 **[1.0.1] ----- 2024-09-27** ::
 
 	    Add dependencies to PKGBUILD
