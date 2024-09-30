@@ -4,3 +4,4 @@
 Public Methods
 process_mem 
 """
+from .version import version

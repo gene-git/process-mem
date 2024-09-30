@@ -86,6 +86,9 @@ positional arguments: list of process names to check. If omitted, all processes 
 
     Full report : adds shared lib and dirty pages (False)
 
+ - *-v, --vers*
+
+    Display version and exit
 
 Installation
 ============

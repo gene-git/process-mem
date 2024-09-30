@@ -4,12 +4,12 @@
 Project process-mem
 """
 
-__version__ = "1.0.2"
-__date__ = "2024-09-29"
+__version__ = "1.1.0"
+__date__ = "2024-09-30"
 __reldev__ = "release"
 __githash__ = 'none'
 
 def version() -> str:
     """ report version and release date """
-    vers = f'wg-tool: version {__version__} ({__date__} commit {__githash__})'
+    vers = f'process-mem: version {__version__} ({__date__})'
     return vers

@@ -3,6 +3,7 @@
 Display memory usage for process(es)
 """
 # pylint: disable=invalid-name
+import sys
 import getpass
 import argparse
 import textwrap
@@ -10,6 +11,7 @@ import re
 from typing import Optional
 from pydantic import BaseModel
 import psutil
+from lib import version
 
 def help_epilog():
     """ add to help listing """
@@ -130,6 +132,7 @@ class ProcInfo:
         self.current_user = getpass.getuser()
         self.user = self.current_user
         self.full = False
+        self.vers = False
 
         epilog = help_epilog()
         par = argparse.ArgumentParser(description='Show Process(es) Memory', epilog=epilog,
@@ -143,6 +146,9 @@ class ProcInfo:
 
         ahelp = f'Case insensitive process names match({self.ignore_case})'
         par.add_argument('-i', '--ignore-case', help=ahelp, action='store_true', default=self.ignore_case)
+
+        ahelp = f'Display version'
+        par.add_argument('-v', '--vers', help=ahelp, action='store_true', default=self.ignore_case)
 
         ahelp = 'process names to check (all processes if not provided)'
         par.add_argument('pnames', nargs='*', help=ahelp)
@@ -168,6 +174,10 @@ class ProcInfo:
 
         if self.user != self.current_user:
             print(f'Checking process mem for: {self.user}')
+
+        if self.vers:
+            print(version())
+            sys.exit()
 
     def show_info(self):
         """
@@ -233,6 +243,12 @@ class ProcInfo:
 
             summary.append(mem_info)
             mem_tot.add(num, mem_info.rss, mem_info.vms, mem_info.shared, mem_info.slib, mem_info.dirty)
+
+        #
+        # Sort by process name and keep total at the end
+        #
+        if len(summary) > 1:
+            summary = sorted(summary, key=lambda meminfo: meminfo.name.lower())
         summary.append(mem_tot)
 
         return summary

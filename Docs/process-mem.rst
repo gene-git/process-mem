@@ -33,7 +33,8 @@ OPTIONS
   -h, --help            show this help message and exit
   -u USER, --user USER  username or :all: default (current_user)
   -f, --full            Full report adds shared lib and dirty pages (default False)
-  -i, --ignore-case    Process name matching is case insensitive
+  -i, --ignore-case     Process name matching is case insensitive
+  -v, --vers            Show version and exit
 
 EXAMPLES
 ========
