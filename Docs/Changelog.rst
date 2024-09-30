@@ -1,8 +1,15 @@
 Changelog
 =========
 
-**[HEAD] ----- 2024-09-29** ::
+**[1.1.0] ----- 2024-09-30** ::
 
+	    Sort output by process name.
+	    Add (-v, --vers) option to display the version and exit
+
+
+**[1.0.2, origin/master] ----- 2024-09-29** ::
+
+	    update Changelog and man page
 	    Reporting virtual memory - use "vms" in place of "vsz"
 	    update Changelog and man page
 
