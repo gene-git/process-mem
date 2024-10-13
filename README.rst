@@ -67,26 +67,37 @@ By default it displayes process owned by current user.
 This can be changed with the *-u* open followed by *username*. You can also use *:all:* to see
 all users.
 
-positional arguments: list of process names to check. If omitted, all processes are examined.
+positional arguments: 
 
- - *-h, --help* 
+   list of process names to check. If omitted, all processes are examined.
+   A process name may be a regex expression.
+
+ - (*-h, --help*) 
 
     show help message and exit
 
- - *-u,--user*      
+ - (*-u,--user*)      
    
     Limit to processes ownder by specified user or *:all:* 
     Defaults to current user.
 
- - *-i, --ignore-case*
+ - (*-i, --ignore-case*)
 
     Case insensitive matching of process names
 
- - *-f, --full*
+ - (*-f, --full*)
 
     Full report : adds shared lib and dirty pages (False)
 
- - *-v, --vers*
+ - (*-sm, --sort-mem)
+
+    Sort by resident memory usage instead of process name.
+
+ - (*sr, --sort-rev)
+
+   Reverse the sort.
+
+ - (*-v, --vers*)
 
     Display version and exit
 

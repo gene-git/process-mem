@@ -5,3 +5,4 @@ Public Methods
 process_mem 
 """
 from .version import version
+from .proc_info import ProcInfo
