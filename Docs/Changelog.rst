@@ -1,13 +1,22 @@
 Changelog
 =========
 
+**[1.2.0] ----- 2024-10-13** ::
+
+	    Split up and use separate files to simplify.
+	    Add new sort options (defaut is by process name)
+	      -sm, --sort-mem       Sort by resident memory use instead of process name
+	      -sr, --sort-rev       Sort in reverse order
+	    update Changelog and man page
+
+
 **[1.1.0] ----- 2024-09-30** ::
 
 	    Sort output by process name.
 	    Add (-v, --vers) option to display the version and exit
 
 
-**[1.0.2, origin/master] ----- 2024-09-29** ::
+**[1.0.2] ----- 2024-09-29** ::
 
 	    update Changelog and man page
 	    Reporting virtual memory - use "vms" in place of "vsz"
