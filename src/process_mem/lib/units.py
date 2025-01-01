@@ -1,4 +1,5 @@
-#!/usr/bin/python
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: © 2024-present  Gene C <arch@sapience.com>
 """
 units utilities
 """

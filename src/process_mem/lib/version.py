@@ -1,11 +1,11 @@
 # SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: © 2022-present  Gene C <arch@sapience.com>
+# SPDX-FileCopyrightText: © 2024-present  Gene C <arch@sapience.com>
 """
 Project process-mem
 """
 
-__version__ = "1.2.0"
-__date__ = "2024-10-13"
+__version__ = "1.3.0"
+__date__ = "2024-12-31"
 __reldev__ = "release"
 __githash__ = 'none'
 
