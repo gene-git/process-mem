@@ -1,6 +1,15 @@
 Changelog
 =========
 
+**[1.3.0] ----- 2024-12-31** ::
+
+	    Git tags are now signed.
+	    Update SPDX tags
+	    Add git signing key to Arch Package
+	    Bump python vers
+	    update Changelog and man page
+
+
 **[1.2.0] ----- 2024-10-13** ::
 
 	    Split up and use separate files to simplify.
