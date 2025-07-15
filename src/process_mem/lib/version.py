@@ -4,10 +4,11 @@
 Project process-mem
 """
 
-__version__ = "1.3.0"
-__date__ = "2024-12-31"
+__version__ = "1.4.0"
+__date__ = "2025-07-15"
 __reldev__ = "release"
 __githash__ = 'none'
+
 
 def version() -> str:
     """ report version and release date """

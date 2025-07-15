@@ -4,24 +4,25 @@
 Display memory usage for process(es)
 """
 # pylint: disable=invalid-name
-from typing import Optional
-from pydantic import BaseModel
+from typing import Any
 import psutil
 
 from .opts import Opts
 from .units import (bytes2human, number2metric)
 
-class MemInfo(BaseModel):
+
+class MemInfo():
     """ process memory data """
     name: str = ''
     num: int = 0
     rss: int = 0
     vms: int = 0
     shared: int = 0
-    slib: Optional[int] = 0
-    dirty: Optional[int] = 0
+    slib: int = 0
+    dirty: int = 0
 
-    def add(self, num:int, rss:int, vms:int, shared:int, slib:int=0, dirty:int=0):
+    def add(self, num: int, rss: int, vms: int,
+            shared: int, slib: int = 0, dirty: int = 0):
         """
         increment the counters for each process
         """
@@ -42,8 +43,8 @@ class MemInfo(BaseModel):
                 'vms': bytes2human(self.vms),
                 'shared': bytes2human(self.shared),
                 'slib': bytes2human(self.slib),
-                'dirty': number2metric(self.dirty),
-               }
+                'dirty': number2metric(self.dirty)
+                }
         return info
 
 
@@ -78,14 +79,15 @@ class ProcInfo:
             name = mem.name
             info = mem.text_units()
 
-            row = f'[{info['num']:>3s}] {info['rss']:>8s} {info['vms']:>8s} {info['shared']:>8s}'
+            row = f'[{info['num']:>3s}] {info['rss']:>8s} '
+            row += f'{info['vms']:>8s} {info['shared']:>8s}'
             if opts.full:
                 row += f' {info['slib']:>8s} {info['dirty']:>8}'
 
-            if mem.name != 'Total' or show_total :
+            if mem.name != 'Total' or show_total:
                 print(f'{name:>28s} : {row}')
 
-    def proc_mem_info(self) -> [MemInfo] :
+    def proc_mem_info(self) -> list[MemInfo]:
         """
         Retrieve meminfo about each process in pnames
         """
@@ -93,8 +95,10 @@ class ProcInfo:
         # Gather the info
         #
         opts = self.opts
-        proc_info = {}
-        for proc in psutil.process_iter(['pid', 'username', 'name', 'memory_info']):
+        # list[psutil._pslinux.pmem] use Any
+        proc_info: dict[str, list[Any]] = {}
+        col_names = ['pid', 'username', 'name', 'memory_info']
+        for proc in psutil.process_iter(col_names):
             pname = proc.info.get('name')
 
             if not self._keep_filter(proc):
@@ -112,47 +116,57 @@ class ProcInfo:
         #
         # Summarize
         #
-        summary = []
-        mem_tot = MemInfo(name='Total')
+        summary: list[MemInfo] = []
+        mem_tot = MemInfo()
+        mem_tot.name = 'Total'
         for (name, pmems) in proc_info.items():
             num = len(pmems)
-            mem_info = MemInfo(name=name)
+            mem_info = MemInfo()
+            mem_info.name = name
             for pmem in pmems:
-                mem_info.add(1, pmem.rss, pmem.vms, pmem.shared, pmem.lib, pmem.dirty)
+                mem_info.add(1, pmem.rss, pmem.vms,
+                             pmem.shared, pmem.lib, pmem.dirty)
 
             summary.append(mem_info)
-            mem_tot.add(num, mem_info.rss, mem_info.vms, mem_info.shared, mem_info.slib, mem_info.dirty)
+            mem_tot.add(num, mem_info.rss, mem_info.vms, mem_info.shared,
+                        mem_info.slib, mem_info.dirty)
 
         #
         # Sort by process name and keep total at the end
         #
         if len(summary) > 1:
             if opts.sort_mem:
-                summary = sorted(summary, key=lambda meminfo: meminfo.rss, reverse=opts.sort_rev)
+                summary = sorted(summary,
+                                 key=lambda meminfo: meminfo.rss,
+                                 reverse=opts.sort_rev)
             else:
-                summary = sorted(summary, key=lambda meminfo: meminfo.name.lower(), reverse=opts.sort_rev)
+                summary = sorted(summary,
+                                 key=lambda meminfo: meminfo.name.lower(),
+                                 reverse=opts.sort_rev)
 
         summary.append(mem_tot)
 
         return summary
 
-    def _keep_filter(self, proc) :
+    def _keep_filter(self, proc: psutil.Process):
         """
         return true if this proc is to be kept
         """
         opts = self.opts
+        info: dict[str, Any] = proc.info    # type: ignore[attr-defined]
+
         # user
-        proc_user = proc.info.get('username')
+        proc_user = info.get('username')
         if opts.user not in (':all:', proc_user):
             return False
 
-        if not opts.pnames :
+        if not opts.pnames:
             return True
 
         # process name
-        proc_name = proc.info.get('name')
+        proc_name = info.get('name')
         for (_name, regcomp) in opts.regex_comp.items():
-            if regcomp.match(proc_name) :
+            if regcomp.match(proc_name):
                 return True
 
         return False

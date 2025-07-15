@@ -6,13 +6,16 @@ Display memory usage for process(es)
 """
 # pylint: disable=invalid-name
 from lib import ProcInfo
-def main() :
+
+
+def main():
     """
     Get process info for process(es)
      - Optional input is process name(s)
     """
     proc_info = ProcInfo()
     proc_info.show_info()
+
 
 if __name__ == '__main__':
     main()

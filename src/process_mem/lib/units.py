@@ -4,6 +4,7 @@
 units utilities
 """
 
+
 def bytes2human(byts):
     """
     Map Bytes to human units
@@ -23,6 +24,7 @@ def bytes2human(byts):
             return f'{value:.1f}{s}'
     return f'{byts}B'
 
+
 def number2metric(num):
     """
     Map number to SI (metric)
@@ -30,14 +32,14 @@ def number2metric(num):
     """
     symbols = ('k', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y')
     prefix = {
-            'k' : 1000,
-            'M' : 1000_000,
-            'G' : 1000_000_000,
-            'T' : 1000_000_000_000,
-            'P' : 1000_000_000_000_000,
-            'E' : 1000_000_000_000_000_000,
-            'Z' : 1000_000_000_000_000_000_000,
-            'Y' : 1000_000_000_000_000_000_000_000,
+            'k': 1000,
+            'M': 1000_000,
+            'G': 1000_000_000,
+            'T': 1000_000_000_000,
+            'P': 1000_000_000_000_000,
+            'E': 1000_000_000_000_000_000,
+            'Z': 1000_000_000_000_000_000_000,
+            'Y': 1000_000_000_000_000_000_000_000,
             }
 
     # work from largest to smallest unit
