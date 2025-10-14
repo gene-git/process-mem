@@ -4,8 +4,8 @@
 Project process-mem
 """
 
-__version__ = "1.4.0"
-__date__ = "2025-07-15"
+__version__ = "1.4.1"
+__date__ = "2025-10-14"
 __reldev__ = "release"
 __githash__ = 'none'
 
