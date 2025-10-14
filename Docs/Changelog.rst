@@ -1,90 +1,115 @@
-=========
 Changelog
 =========
 
 Tags
 ====
 
-::
+.. code-block:: text
 
-	0.9.1 (2024-09-27) -> 1.4.0 (2025-07-15)
-	18 commits.
+	0.9.1 (2024-09-27) -> 1.4.1 (2025-10-14)
+	20 commits.
 
 Commits
 =======
 
 
+* 2025-10-14  : **1.4.1**
+
+.. code-block:: text
+
+              - Drop unused pydantic dependency from Arch PKGBUILD
+ 2025-07-15   ⋯
+
+.. code-block:: text
+
+              - update Changelog and man page
+
 * 2025-07-15  : **1.4.0**
 
-::
+.. code-block:: text
 
-                Tidy code: complies with PEP-8, PEP-257 and PEP-484 style and type
-                annotations
- 2024-12-31     update Changelog and man page
+              - Tidy code: complies with PEP-8, PEP-257 and PEP-484 style and type annotations
+ 2024-12-31   ⋯
+
+.. code-block:: text
+
+              - update Changelog and man page
 
 * 2024-12-31  : **1.3.0**
 
-::
+.. code-block:: text
 
-                Git tags are now signed.
+              - Git tags are now signed.
                 Update SPDX tags
                 Add git signing key to Arch Package
                 Bump python vers
- 2024-10-13     update Changelog and man page
+ 2024-10-13   ⋯
+
+.. code-block:: text
+
+              - update Changelog and man page
 
 * 2024-10-13  : **1.2.0**
 
-::
+.. code-block:: text
 
-                Split up and use separate files to simplify.
+              - Split up and use separate files to simplify.
                 Add new sort options (defaut is by process name)
                   -sm, --sort-mem       Sort by resident memory use instead of process name
                   -sr, --sort-rev       Sort in reverse order
- 2024-09-30     update Changelog and man page
+ 2024-09-30   ⋯
+
+.. code-block:: text
+
+              - update Changelog and man page
 
 * 2024-09-30  : **1.1.0**
 
-::
+.. code-block:: text
 
-                Sort output by process name.
+              - Sort output by process name.
                 Add (-v, --vers) option to display the version and exit
 
 * 2024-09-29  : **1.0.2**
 
-::
+.. code-block:: text
 
-                update Changelog and man page
-                Reporting virtual memory - use "vms" in place of "vsz"
- 2024-09-27     update Changelog and man page
+              - update Changelog and man page
+              - Reporting virtual memory - use "vms" in place of "vsz"
+ 2024-09-27   ⋯
+
+.. code-block:: text
+
+              - update Changelog and man page
 
 * 2024-09-27  : **1.0.1**
 
-::
+.. code-block:: text
 
-                Add dependencies to PKGBUILD
-                update Changelog and man page
+              - Add dependencies to PKGBUILD
+              - update Changelog and man page
 
 * 2024-09-27  : **1.0.0**
 
-::
+.. code-block:: text
 
-                Allow process name match to be case insensitve
+              - Allow process name match to be case insensitve
                 Allow process name match to be a regex
                 Update man page and readme
-                update Changelog and man page
+              - update Changelog and man page
 
 * 2024-09-27  : **0.9.2**
 
-::
+.. code-block:: text
 
-                Improve README example output
-                update Changelog and man page
+              - Improve README example output
+              - update Changelog and man page
 
 * 2024-09-27  : **0.9.1**
 
-::
+.. code-block:: text
 
-                Only show total when more than 1 process name
-                Initial Commit
+              - Only show total when more than 1 process name
+              - Initial Commit
 
 
