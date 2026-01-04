@@ -1,4 +1,4 @@
-.. SPDX-License-Identifier: MIT
+.. SPDX-License-Identifier: GPL-2.0-or-later
 
 ###########
 process-mem
@@ -35,19 +35,28 @@ Next example uses regex with case ignored. ::
 Key features
 ============
 
- * Simple way to get total memory used by an application across all it's processes.
- * Can use regex to match process name
- * Can choose user to match.
+* Simple way to get total memory used by an application across all it's processes.
+* Can use regex to match process name
+* Can choose user to match.
 
 New / Interesting
 =================
 
- * All git tags are signed with arch@sapience.com key which is available via WKD
-   or download from https://www.sapience.com/tech. Add the key to your package builder gpg keyring.
-   The key is included in the Arch package and the source= line with *?signed* at the end can be used
-   to verify the git tag.  You can also manually verify the signature
+**1.5.0**
 
- * Add regex matching for process names.
+* Code Reorg
+* Switch packaging from hatch to uv
+* Testing to confirm all working on python 3.14.2
+* License GPL-2.0-or-later
+
+**Older**
+
+* All git tags are signed with arch@sapience.com key which is available via WKD
+  or download from https://www.sapience.com/tech. Add the key to your package builder gpg keyring.
+  The key is included in the Arch package and the source= line with *?signed* at the end can be used
+  to verify the git tag.  You can also manually verify the signature
+
+* Add regex matching for process names.
 
 
 ###############
@@ -78,34 +87,34 @@ positional arguments:
    list of process names to check. If omitted, all processes are examined.
    A process name may be a regex expression.
 
- - (*-h, --help*) 
+* (*-h, --help*) 
 
-    show help message and exit
+   show help message and exit
 
- - (*-u,--user*)      
+* (*-u,--user*)      
    
-    Limit to processes ownder by specified user or *:all:* 
-    Defaults to current user.
+   Limit to processes ownder by specified user or *:all:* 
+   Defaults to current user.
 
- - (*-i, --ignore-case*)
+* (*-i, --ignore-case*)
 
-    Case insensitive matching of process names
+   Case insensitive matching of process names
 
- - (*-f, --full*)
+* (*-f, --full*)
 
-    Full report : adds shared lib and dirty pages (False)
+   Full report : adds shared lib and dirty pages (False)
 
- - (*-sm, --sort-mem)
+* (*-sm, --sort-mem)
 
-    Sort by resident memory usage instead of process name.
+   Sort by resident memory usage instead of process name.
 
- - (*sr, --sort-rev)
+* (*sr, --sort-rev)
 
-   Reverse the sort.
+  Reverse the sort.
 
- - (*-v, --vers*)
+* (*-v, --vers*)
 
-    Display version and exit
+   Display version and exit
 
 Installation
 ============
@@ -117,12 +126,12 @@ Available on
 On Arch you can build using the provided PKGBUILD in the packaging directory or from the AUR.
 To build manually, clone the repo and :
 
- .. code-block:: bash
+.. code-block:: bash
 
-        rm -f dist/*
-        /usr/bin/python -m build --wheel --no-isolation
-        root_dest="/"
-        ./scripts/do-install $root_dest
+       rm -f dist/*
+       /usr/bin/python -m build --wheel --no-isolation
+       root_dest="/"
+       ./scripts/do-install $root_dest
 
 When running as non-root then set root_dest a user writable directory
 
@@ -131,15 +140,14 @@ Dependencies
 
 * Run Time :
 
-  * python          (3.11 or later)
+  * python          (3.13 or later)
+  * python-psutil   
 
 * Building Package:
 
   * git
-  * hatch           (aka python-hatch)
-  * wheel           (aka python-wheel)
-  * build           (aka python-build)
-  * installer       (aka python-installer)
+  * uv
+  * uv-build        (aka python-uv-build)
   * rsync
   * docutils        (aka python-docutils - to generate man page)
 
@@ -154,10 +162,10 @@ latest commit on git master branch.
 License
 =======
 
-Created by Gene C. and licensed under the terms of the MIT license.
+Created by Gene C. and licensed under the terms of the GPL-2.0-or-later license.
 
- * SPDX-License-Identifier: MIT
- * SPDX-FileCopyrightText: © 2024-present  Gene C <arch@sapience.com>
+* SPDX-License-Identifier: GPL-2.0-or-later
+* SPDX-FileCopyrightText: © 2024-present  Gene C <arch@sapience.com>
 
 .. _Github: https://github.com/gene-git/process_mem
 .. _Archlinux AUR: https://aur.archlinux.org/packages/process_mem
