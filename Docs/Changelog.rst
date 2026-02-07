@@ -6,14 +6,20 @@ Tags
 
 .. code-block:: text
 
-	0.9.1 (2024-09-27) -> 1.5.0 (2026-01-04)
-	22 commits.
+	0.9.1 (2024-09-27) -> 1.6.0 (2026-02-07)
+	23 commits.
 
 Commits
 =======
 
 
-* 2026-01-04  : **1.5.0**
+* 2026-02-07  : **1.6.0**
+
+.. code-block:: text
+
+              - Add check for bad regex and issue warning
+
+* 2026-01-04  : **1.5.0, origin/master**
 
 .. code-block:: text
 
