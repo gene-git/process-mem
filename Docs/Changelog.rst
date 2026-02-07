@@ -6,12 +6,28 @@ Tags
 
 .. code-block:: text
 
-	0.9.1 (2024-09-27) -> 1.4.1 (2025-10-14)
-	20 commits.
+	0.9.1 (2024-09-27) -> 1.5.0 (2026-01-04)
+	22 commits.
 
 Commits
 =======
 
+
+* 2026-01-04  : **1.5.0**
+
+.. code-block:: text
+
+              - **1.5.0**
+            
+                * Code Reorg
+                * Switch packaging from hatch to uv
+                * Testing to confirm all working on python 3.14.2
+                * License GPL-2.0-or-later
+ 2025-10-14   ⋯
+
+.. code-block:: text
+
+              - update Changelog and man page
 
 * 2025-10-14  : **1.4.1**
 

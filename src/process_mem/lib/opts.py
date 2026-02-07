@@ -124,10 +124,13 @@ class Opts():
             else:
                 regex = fr'^{name}$'
 
+            flags: int = 0
             if self.ignore_case:
-                self.regex_comp[name] = re.compile(regex, re.IGNORECASE)
-            else:
-                self.regex_comp[name] = re.compile(regex)
+                flags |= re.IGNORECASE
+            try:
+                self.regex_comp[name] = re.compile(regex, flags=flags)
+            except re.error as exc:
+                print(f'Bad regex: {regex}: {exc}')
 
         if self.user != self.current_user:
             print(f'Checking process mem for: {self.user}')
