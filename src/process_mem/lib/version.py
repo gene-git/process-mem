@@ -4,10 +4,10 @@
 Project process-mem
 """
 
-__version__ = "1.6.0"
-__date__ = "2026-02-07"
+__version__ = "1.7.1"
+__date__ = "2026-09-08"
 __reldev__ = "release"
-__githash__ = 'none'
+__githash__ = "b518f574d7"
 
 
 def version() -> str:

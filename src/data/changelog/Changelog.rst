@@ -6,12 +6,26 @@ Tags
 
 .. code-block:: text
 
-	0.9.1 (2024-09-27) -> 1.6.0 (2026-02-07)
-	23 commits.
+	0.9.1 (2024-09-27) -> 1.7.1, (2026-09-08)
+	25 commits.
 
 Commits
 =======
 
+
+* 2026-09-08  : **1.7.1,**
+
+.. code-block:: text
+
+              - **1.7.0**
+            
+                * Use meson / meson python for build / package management.
+                * Periodic code review
+ 2026-02-07   ⋯
+
+.. code-block:: text
+
+              - update Changelog and man page
 
 * 2026-02-07  : **1.6.0**
 
@@ -19,7 +33,7 @@ Commits
 
               - Add check for bad regex and issue warning
 
-* 2026-01-04  : **1.5.0, origin/master**
+* 2026-01-04  : **1.5.0**
 
 .. code-block:: text
 

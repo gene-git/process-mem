@@ -2,18 +2,10 @@
 #
 # Source code checks.
 #
-# Run in top level
-# Requires
-# - pylint
-# - pycodestyle
-# - mypy
+mod_dir="src/process_mem"
+PYTHONPATH=$(/usr/bin/realpath ./src)
 
-# code
-mod_dir="process_mem"
-cd ./src
-PYTHONPATH=. pylint $mod_dir/*y $mod_dir/*/*py
-PYTHONPATH=. pycodestyle --max-line-length=110 $mod_dir/*y $mod_dir/*/*py
-
-mypy --check-untyped-defs --follow-untyped-imports $mod_dir
-
+/usr/bin/pylint $mod_dir/*y $mod_dir/*/*py
+/usr/bin/pycodestyle --max-line-length=110 $mod_dir/*y $mod_dir/*/*py
+/usr/bin/mypy --check-untyped-defs --follow-untyped-imports $mod_dir
 

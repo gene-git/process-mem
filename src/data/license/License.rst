@@ -2,9 +2,10 @@
 License
 =======
 
-process_mem: Display Memory Used by Process(es).
+pyconcurrent is a python module that provides ability to easily take advantage of running
+tasks concurrently.
 
-Copyright © 2022-present Gene C <arch@sapience.com>
+Copyright © 2025-present  Gene C <arch@sapience.com>
 
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 

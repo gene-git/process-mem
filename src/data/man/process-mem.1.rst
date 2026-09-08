@@ -7,10 +7,10 @@ Display Memory Used by Process(es)
 ----------------------------------
 
 :Author: Gene C <arch@sapience.com>
-:Copyright: 2024-present Gene C 
-:Version: process_mem
-:Date: 27 September 2024
 :Manual section: 1
+:Copyright: 2024-present Gene C 
+:Version: @VERSION@
+:Date: @DATE@
 :Manual group: Linux Tools
 
 SYNOPSIS
